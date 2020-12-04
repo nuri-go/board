@@ -1,0 +1,19 @@
+{% extends 'admin_main/common/header.html' %}
+{% load staticfiles %}
+{% block main %}
+
+<section>
+  <div class="container">
+    <h4> 문의제목 : {{ admin_main.voc_title }} </h4>
+      <div>
+    <button type="button" class="btn btn-primary" id =inputClient onclick="location.href='{% url 'admin_main:client_list_update' pk=admin_main.NO %}'"> 수정 </button>
+    <button type="button" class="btn btn-primary" id =inputClient onclick="location.href='{% url 'admin_main:client_list_delete' pk=admin_main.NO %}'"> 삭제 </button>
+  </div>
+
+
+  </div>
+
+</section>
+
+
+{% endblock main %}

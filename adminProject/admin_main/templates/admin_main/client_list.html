@@ -1,0 +1,73 @@
+{% extends 'admin_main/common/header.html' %}
+{% load staticfiles %}
+{% block main %}
+<style>  
+    #inputClient { 
+      float: right;
+      margin: 10px;
+    }
+      #excelDownolad { 
+      float: right;
+      margin: 10px;
+    }
+    body{
+		font-family:  "맑은 고딕", serif;/*웹 폰트 지정*/
+		
+    }
+</style>
+<div class="container">
+  <div>
+    <button type="button" class="btn btn-primary" id =inputClient onclick="window.open('http://45.119.146.59:8000/insert','window_name','width=600,height=900,location=no,status=no,scrollbars=yes');"> 내용추가 </button>
+      <form method="POST" class="post-form" id="ExcelData" action="{% url 'admin_main:index' %}">
+      {% csrf_token %}
+        <button type="submit" class="btn btn-primary" id ="excelDownolad" value="Click me" >  download </button>
+      </form>
+  </div>
+    <table class="table table-condensed"  id="myTable">
+          <thead>
+            <tr >
+              <th>인입시간</th>
+              <th>인입방법</th>
+              <th>회원번호</th>
+              <th>회원명</th>
+              <th>문서번호</th>
+              <th>제목</th>
+           <!--  <th>내용</th>--> 
+              <th>대응내역</th>
+              <th>담당자</th>
+              <th>장애보고서</th>
+              <th>파트너사</th>
+            </tr>
+          </thead>
+          <tbody class="panel">
+            {% for list in client_list %}
+          <tr data-toggle="collapse" data-target="#demo{{list.NO}}" data-parent="#myTable">
+            <td><a href="{% url 'admin_main:client_list_detail' pk=list.NO %}">{{ list.voc_date }}</a></td>
+            <td>{{ list.voc_method }}</td>
+            <td>{{ list.client_number }}</td>
+            <td>{{ list.client_name }}</td>
+            <td>{{ list.voc_number }}</td>
+            <td>{{ list.voc_title }}</td>
+            <!--
+            <td >
+            <div  >{{ list.voc_content }}</div>
+            </td>
+            -->
+            <td>{{ list.voc_comment }}</td>
+            <td>{{ list.voc_manger }}</td>
+            <td>{{ list.report }}</td>
+            <td>{{ list.partner }}</td>
+          </tr>
+          <tr id="demo{{list.NO}}" class="collapse" >
+            <td colspan="10" class="hiddenRow"><div><p> 문의내용:</p><br> <p>{{ list.voc_content }}</p></div> </td>
+          </tr>
+            {% endfor %}
+          </tbody>
+    </table>
+  </div>
+  <script type="text/javascript">
+
+
+  </script>
+
+{% endblock main %}

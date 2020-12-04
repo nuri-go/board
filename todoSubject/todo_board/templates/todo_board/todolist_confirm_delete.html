@@ -1,0 +1,18 @@
+{% extends 'todo_main/common/header.html' %}
+{% load staticfiles %}
+{% block main %}
+
+<section id="blog">
+  <div class="container">
+    <form class="post-form" method="post">
+      {%csrf_token%}
+
+      <p>정말로 {{todo_list.title}}를 삭제하시나요?</p>
+      <input type="submit" name="" value="Confirm">
+
+    </form>
+
+  </div>
+</section>
+
+{% endblock main %}

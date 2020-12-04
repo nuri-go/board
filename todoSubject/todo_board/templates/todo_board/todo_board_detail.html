@@ -1,0 +1,39 @@
+{% extends 'todo_main/common/header.html' %}
+{% load staticfiles %}
+{% block main %}
+
+<section id ="blog">
+  <div class="container">
+    <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>인입시간</th>
+              <th>인입방법</th>
+              <th>회원번호</th>
+              <th>회원명</th>
+              <th>문서번호</th>
+              <th>제목</th>
+              <th>내용</th>
+              <th>1차대응결과</th>
+              <th>1차대응담당자</th>
+              <th>장애보고서</th>
+              <th>파트너사</th>
+
+            </tr>
+          </thead>
+        <tbody>
+          <tr>
+            <td>{{ todo_list.title }}</td>
+            <td>{{ todo_list.content }}</td>
+            <td>{{ todo_list.end_date }}</td>
+          </tr>
+        </tbody>
+    </table>
+
+    <button type="button" class="btn btn-primary" onclick="location.href='{% url 'todo_board:todo_board_update' pk=todo_list.pk %}'">  수정 </button>
+    <button type="button" class="btn btn-primary" onclick="location.href='{% url 'todo_board:todo_board_delete' pk=todo_list.pk %}'">  삭제 </button>
+
+  </div>
+
+</section>
+{% endblock main %}

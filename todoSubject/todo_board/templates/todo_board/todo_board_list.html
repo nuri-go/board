@@ -1,0 +1,16 @@
+{% extends 'todo_main/common/header.html' %}
+{% load staticfiles %}
+{% block main %}
+
+<div class="col-md-12">
+  <div class="container">
+    <div id="example1" class="list-group col">
+      {% for list in todo_list %}
+      <div class="list-group-item"><input type="checkbox" name="{{list.title}}" value="{{list.title}}"> <a href="{% url 'todo_board:todo_board_detail' pk=list.no %}">{{list.title}}</a></div>
+      {% endfor %}
+  </div>
+  <button type="button" name="button" onclick="location.href='{% url 'todo_board:todo_board_insert' %}'"> 글쓰기</button>
+  </div>
+</div>
+
+{% endblock main %}

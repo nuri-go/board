@@ -1,0 +1,64 @@
+{% extends 'admin_main/common/header.html' %}
+{% load staticfiles %}
+{% block main %}
+
+<style>
+  .voc_title{
+    width: 300% !important ;
+  }
+  .main-container {
+    width: 800px; position: absolute; left: 50%; margin-left: -200px;
+  }
+  .voc_content{
+
+
+
+  }
+
+</style>
+
+
+<section >
+  <div class="main-container">
+   <form method="POST" class="post-form" >
+       {%csrf_token%}
+
+        {% if form.errors %}
+          <div class="alert alert-danger" role="alert">
+          {% for field in form %}
+          {% if field.errors %}
+          <strong>{{ field.label }}</strong>
+          {{ field.errors }}
+          {% endif %}
+          {% endfor %}
+          </div>
+        {% endif %}
+
+        <div class="form-group">
+          <label for="voc_date">인입시간 <input type="text" class="form-control" name="voc_date"  id ="voc_date" value="{{ form.voc_date.value|default_if_none:'' }}"></label>
+          <label for="voc_method">인입방법 <input type="text" class="form-control" name="voc_method"  value="{{ form.voc_method.value|default_if_none:'' }}"></label>
+        <div>
+          <label for="subject">회원번호 <input type="text" class="form-control" name="client_number" value="{{ form.client_number.value|default_if_none:'' }}"></label>
+          <label for="subject">회원이름 <input type="text" class="form-control" name="client_name"  value="{{ form.client_name.value|default_if_none:'' }}"></label>
+          <label for="subject">문의번호 <input type="text" class="form-control" name="voc_number"  value="{{ form.voc_number.value|default_if_none:'' }}"></label>
+        </div>
+        <div>
+        <label for="subject">문의제목 <input type="text" class="voc_title form-control" name="voc_title"  value="{{ form.voc_title.value|default_if_none:'' }}"></label>
+        </div>
+        <div>
+        <label for="subject">문의내용 <input type="text" class="voc_content form-control" name="voc_content"  value="{{ form.voc_content.value|default_if_none:'' }}" style="text-align:center; width:800px; height:100px;"></label>
+        </div>
+        <div>
+        <label for="subject">1차 대응내역 <input type="text" class="form-control" name="voc_comment"  value="{{ form.voc_comment.value|default_if_none:'' }}"></label>
+        </div>
+        <label for="subject">1차 담당자<input type="text" class="form-control" name="voc_manger"  value="{{ form.voc_manger.value|default_if_none:'' }}"></label>
+        <label for="subject">장애보고서 <input type="text" class="form-control" name="report"  value="{{ form.report.value|default_if_none:'' }}"></label>
+        <label for="subject">파트너사 <input type="text" class="form-control" name="partner"  value="{{ form.partner.value|default_if_none:'' }}"></label>
+
+        </div>
+       <input type="submit" class="save btn btn-primary" value="Update">
+   </form>
+  </div>
+</section>
+
+{% endblock main %}
